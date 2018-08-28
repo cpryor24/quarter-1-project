@@ -1,0 +1,158 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.row .col {
+  padding: 0;
+}
+
+.row{
+  margin-bottom: 0;
+}
+
+:root {
+  --main-background-color: white;
+}
+
+.fixed-header {
+  background-color: var(--main-background-color);
+  height: 10vh;
+}
+
+.col.s2.title {
+  font-size: 35px;
+  margin-left: 20px;
+}
+
+.calendar {
+  font-size: 20px;
+  margin-top: 15px;
+}
+                                    /********** MAIN COMPONENT *********/
+
+
+
+.fit-container {
+  height: 90vh;
+  background-color: #f4f8fc;
+  padding: 20px;
+}
+
+.col.s2.nav {
+  padding: 15px;
+  background-color: var(--main-background-color);
+}
+
+.col.s2.user {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.col.s2.measurements {
+  height: 10vh;
+  border-top: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
+
+.col.s2.user,
+.col.s2.links {
+  height: 25vh;
+}
+
+.card {
+  margin: 0;
+}
+
+img.circle {
+  height: 60px;
+  width: 60px;
+}
+
+.user,
+.user-measurements,
+.links,
+.fit-card {
+  width: 20vw;
+}
+
+.user {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.user-measurements {
+  border-radius: 0;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.user-measurements .card-stacked:nth-child(1) {
+  border-right: 1px solid lightgray;
+}
+
+.links {
+  border-radius: 0;
+}
+
+.fit-card {
+  height: 180px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.congrats {
+  height: 140px;
+  width: 18vw;
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.user-height-container {
+  border-right: 1px solid lightgray;
+}
+
+.user-height,
+.user-weight {
+  color: #64b5f6;
+  text-transform: uppercase;
+}
+
+.lb {
+  color: #999999;
+}
+
+.overview,
+.stats,
+.exercises,
+.workout-plan {
+  font-size: 18px;
+  color: #666666;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.overview i,
+.stats i,
+.exercises i,
+.workout-plan i {
+  font-size: 24px;
+  /* color: #666666; */
+  margin-right: 20px;
+}
+
+.icon-color {
+  color: #64b5f6;
+}
+
+.overview,
+.stats,
+.exercises,
+.workout-plan {
+  height: 50px;
+}

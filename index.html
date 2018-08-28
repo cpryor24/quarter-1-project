@@ -4,9 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Fitness Tracker</title>
 </head>
 <body>
+  <header class="fixed-header container-fluid">
+    <div class="row">
+      <div class="col s2 title">fitness <strong>tracker</strong></div>
+      <div class="col s4 calendar">
+        <div class="right-align">Today,<span class="date"></span></div>
+      </div>
+      <div class="col s6"></div>
+    </div>
+  </header>
+  <main class="container-fluid fit-container">
+    <article class="row">
+      <div class="col s12 m7">
+        <div class="card horizontal user">
+          <div class="card-stacked">
+            <div class="card-content">
+              <div class="image">
+                <img class="circle valign-wrapper center-align" src="images/fitness.jpg" alt="fitness">
+                <!-- <span class=" halign-wrapper right-align">EDIT</span> -->
+              </div>
+              <h5 class="name valign-wrapper">Mika Jones</h5>
+              <div class="gender">Female, 32 years old</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="row">
+      <div class="col s12 m7">
+        <div class="card horizontal user-measurements">
+          <div class="card-stacked">
+            <div class="card-content user-height-container">
+              <div class="user-height">Height</div>
+              <div>6' 0"</div>
+            </div>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content user-weight-container">
+              <div class="user-weight">Weight</div>
+              <div>185 <span class="lb">lb</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="row">
+      <div class="col s12 m7">
+        <div class="card horizontal links">
+          <div class="card-stacked">
+            <div class="card-content" id="fitnessOverview">
+              <div class="overview icon-color valign-wrapper"><i class="material-icons">dashboard</i>Home</div>
+              <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div>
+              <div class="exercises valign-wrapper"><i class="material-icons">fitness_center</i>Exercises</div>
+              <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="row">
+      <div class="col s12 m7">
+        <div class="card horizontal fit-card">
+          <div class="card-stacked">
+            <div class="card-panel blue lighten-1 congrats">
+              <section>
+                <p class="white-text">CONGRATULATIONS!</p>
+                <div class="white-text">You have unlocked the</div>
+                <div class="white-text">"Beginner" level.</div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="src/app.js"></script>
 </body>
 </html>
