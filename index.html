@@ -12,79 +12,193 @@
 <body>
   <header class="fixed-header container-fluid">
     <div class="row">
-      <div class="col s2 title">fitness <strong>tracker</strong></div>
-      <div class="col s4 calendar">
-        <div class="right-align">Today,<span class="date"></span></div>
+      <div class="col s12 m6 l5 title">fitness <strong>tracker</strong></div>
+      <div class="col s12 m5 l6 calendar">
+        <div>Today, <span class="date"></span></div>
       </div>
-      <div class="col s6"></div>
+      <div class="col s12 m1 l1 logout center-align"><i class="material-icons">power_settings_new</i></div>
     </div>
   </header>
+
   <main class="container-fluid fit-container">
-    <article class="row">
-      <div class="col s12 m7">
-        <div class="card horizontal user">
-          <div class="card-stacked">
-            <div class="card-content">
-              <div class="image">
-                <img class="circle valign-wrapper center-align" src="images/fitness.jpg" alt="fitness">
-                <!-- <span class=" halign-wrapper right-align">EDIT</span> -->
+    <div class="row">
+      <aside class="col s12 m3 testing">
+        <article class="row">
+          <div class="col s12 m11">
+            <div class="card horizontal user">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <div class="image">
+                    <img class="circle valign-wrapper center-align" src="images/fitness.jpg" alt="fitness">
+                    <!-- <span class=" halign-wrapper right-align">EDIT</span> -->
+                  </div>
+                  <h5 class="name valign-wrapper">Mika Jones</h5>
+                  <div class="gender">Female, 32 years old</div>
+                </div>
               </div>
-              <h5 class="name valign-wrapper">Mika Jones</h5>
-              <div class="gender">Female, 32 years old</div>
+            </div>
+          </div>
+        </article>
+        <article class="row">
+          <div class="col s12 m11">
+            <div class="card horizontal user-measurements">
+              <div class="card-stacked">
+                <div class="card-content user-height-container">
+                  <div class="user-height">Height</div>
+                  <div>6' 0"</div>
+                </div>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content user-weight-container">
+                  <div class="user-weight">Weight</div>
+                  <div>185 <span class="lb">lb</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="row">
+          <div class="col s12 m11">
+            <div class="card horizontal links">
+              <div class="card-stacked">
+                <div class="card-content" id="fitnessOverview">
+                  <div class="overview icon-color valign-wrapper"><i class="material-icons">dashboard</i>Home</div>
+                  <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div>
+                  <div class="goal valign-wrapper"><i class="material-icons">flag</i>my goal</div>
+                  <div class="exercises valign-wrapper"><i class="material-icons">fitness_center</i>Exercises</div>
+                  <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="row">
+          <div class="col s12 m11">
+            <div class="card horizontal fit-card">
+              <div class="card-stacked">
+                <div class="card-panel blue lighten-1 congrats">
+                  <section>
+                    <p class="white-text">CONGRATULATIONS!</p>
+                    <div class="white-text">You have unlocked the</div>
+                    <div class="white-text">"Beginner" level.</div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </aside>
+
+      <!-- FITNESS CARDS -->
+      <section class="col s12 m3"></section>
+      <section class="col s12 m4">
+        <div class="card exercise-card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s6">
+                <div class="exercising-icon"><i class="material-icons white-text">fitness_center</i></div>
+                <div class="card-workout white-text">Exercises</div>
+                <div class="card-exercise-hours white-text">1 hour 30 minutes</div>
+              </div>
+              <div class="col s6 m3">yeah</div>
             </div>
           </div>
         </div>
-      </div>
-    </article>
-    <article class="row">
-      <div class="col s12 m7">
-        <div class="card horizontal user-measurements">
-          <div class="card-stacked">
-            <div class="card-content user-height-container">
-              <div class="user-height">Height</div>
-              <div>6' 0"</div>
-            </div>
-          </div>
-          <div class="card-stacked">
-            <div class="card-content user-weight-container">
-              <div class="user-weight">Weight</div>
-              <div>185 <span class="lb">lb</span></div>
+      </section>
+      <!-- <section class="col s12 m3">
+        <div class="card new-card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s6">
+                <div class="card-exercise"><i class="material-icons">fitness_center</i></div>
+                <div class="card-total-exercises">Exercises</div>
+              </div>
+              <div class="col s6">yeah</div>
             </div>
           </div>
         </div>
-      </div>
-    </article>
-    <article class="row">
-      <div class="col s12 m7">
-        <div class="card horizontal links">
-          <div class="card-stacked">
-            <div class="card-content" id="fitnessOverview">
-              <div class="overview icon-color valign-wrapper"><i class="material-icons">dashboard</i>Home</div>
-              <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div>
-              <div class="exercises valign-wrapper"><i class="material-icons">fitness_center</i>Exercises</div>
-              <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div>
+      </section> -->
+      <section class="col s12 m4">
+        <div class="card sleep-card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s6">
+                <div class="sleeping-icon"><i class="material-icons white-text">snooze</i></div>
+                <div class="card-sleep white-text">Sleep</div>
+                <div class="card-sleep-hours white-text">8 hours minimum</div>
+              </div>
+              <div class="col s6">rest</div>
             </div>
           </div>
         </div>
-      </div>
-    </article>
-    <article class="row">
-      <div class="col s12 m7">
-        <div class="card horizontal fit-card">
-          <div class="card-stacked">
-            <div class="card-panel blue lighten-1 congrats">
-              <section>
-                <p class="white-text">CONGRATULATIONS!</p>
-                <div class="white-text">You have unlocked the</div>
-                <div class="white-text">"Beginner" level.</div>
-              </section>
-            </div>
+      </section>
+
+      <!-- EXERCISES -->
+      <!-- <section class="container exercise">
+        <div class="row">
+          <div class="col s12 m11">
+
           </div>
         </div>
-      </div>
-    </article>
+      </section> -->
+      <div class="row">
+        <div class="col s12 m3"></div>
+        <div class="col s12 m9">
+          <ul class="tabs" id="tabExerciseID">
+            <li class="tab col s3"><a class="active" href="#10">Abs</a></li>
+            <li class="tab col s3"><a href="#8">Arms</a></li>
+            <li class="tab col s3"><a href="#12">Back</a></li>
+            <li class="tab col s3"><a href="#14">Calves</a></li>
+            <li class="tab col s3"><a href="#11">Chest</a></li>
+            <li class="tab col s3"><a href="#9">Legs</a></li>
+            <li class="tab col s3"><a href="#13">Shoulders</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m3"></div>
+          <div id="10" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="absList"></ul>
+          </div>
+          <div id="8" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="armsList"></ul>
+          </div>
+          <div id="12" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="backList"></ul>
+          </div>
+          <div id="14" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="calvesList"></ul>
+          </div>
+          <div id="11" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="chestList"></ul>
+          </div>
+          <div id="9" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="legsList"></ul>
+          </div>
+          <div id="13" class="col s12 m9 tab-exercises">
+            <ul class="collapsible col s12" id="shouldersList"></ul>
+          </div>
+
+
+        <!-- <div id="test2" class="col s12 m4">Test 2</div> -->
+        <!-- <div id="test3" class="col s12 m4">Test 3</div> -->
+        <!-- <div id="test4" class="col s12 m4">Test 4</div> -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="src/app.js"></script>
 </body>

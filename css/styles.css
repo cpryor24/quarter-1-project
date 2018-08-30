@@ -1,158 +1,235 @@
+@media screen and (min-width:320px) {
+  * {
+    box-sizing: border-box;
+  }
 
-* {
-  box-sizing: border-box;
+  body {
+    background-color: #f4f8fc;
+  }
+
+  .row .col {
+    padding: 0;
+  }
+
+  .row{
+    margin-bottom: 0;
+  }
+
+  :root {
+    --main-background-color: white;
+  }
+
+  .fixed-header {
+    background-color: var(--main-background-color);
+  }
+
+  .col.s12.title {
+    font-size: 24px;
+    color: #42A5F5;
+  }
+
+  .col.s12.title,
+  .calendar {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .calendar {
+    font-size: 18px;
+  }
+
+  .fit-container .col .row {
+    margin: 0;
+  }
+
+  .fit-container {
+    padding: 20px;
+  }
+
+  .col.s2.nav {
+    padding: 15px;
+    background-color: var(--main-background-color);
+  }
+
+  .col.s2.user {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .col.s2.measurements {
+    height: 3vh;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+  }
+
+  .col.s2.user,
+  .col.s2.links {
+    height: 18vh;
+  }
+
+  .card {
+    margin: 0;
+  }
+
+  img.circle {
+    height: 60px;
+    width: 60px;
+  }
+
+  .user {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+  }
+
+  .user-measurements {
+    border-radius: 0;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .user-measurements .card-stacked:nth-child(1) {
+    border-right: 1px solid lightgray;
+  }
+
+  .links {
+    border-radius: 0;
+  }
+
+  .user-height-container {
+    border-right: 1px solid lightgray;
+  }
+
+  .user-height,
+  .user-weight {
+    color: #64b5f6;
+    text-transform: uppercase;
+  }
+
+  .lb {
+    color: #999999;
+  }
+
+  .overview,
+  .goal,
+  .stats,
+  .exercises,
+  .workout-plan {
+    font-size: 18px;
+    color: #666666;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .overview i,
+  .goal i,
+  .stats i,
+  .exercises i,
+  .workout-plan i {
+    font-size: 24px;
+    margin-right: 20px;
+  }
+
+  .icon-color {
+    color: #64b5f6;
+  }
+
+  .overview,
+  .stats,
+  .goal,
+  .exercises,
+  .workout-plan {
+    height: 43px;
+  }
+
+  .fit-card {
+    height: 180px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .congrats {
+    height: 140px;
+    /* width: 266px; */
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+  }
+                                              /********** CARDS COMPONENT *********/
+  .exercise-card {
+    background-image: linear-gradient(to bottom right, #4facfe, #00f2fe);
+  }
+
+  .sleep-card {
+    background-image: linear-gradient(to bottom right, #19d191, #39fb90);
+    margin-bottom: 15px;
+  }
+
+  .exercise-card,
+  .sleep-card {
+    height: 170px;
+    border-radius: 15px;
+    margin-top: 15px;
+  }
+
+  .exercising-icon i,
+  .sleeping-icon i{
+    font-size: 60px;
+  }
+
+  .card-workout,
+  .card-sleep {
+    font-size: 30px;
+  }
+
 }
 
-.row .col {
-  padding: 0;
+@media screen and (min-width:599px) {
+
+  .col.m6.title {
+    font-size: 35px;
+    padding-left: 20px;
+  }
+
+  .col.m6.title,
+  .calendar {
+    text-align: left;
+  }
+
+  .calendar,
+  .logout {
+    font-size: 20px;
+    margin-top: 15px;
+  }
+
+  .exercise-card {
+    margin-right: 20px;
+  }
+
+  .exercise-card,
+  .sleep-card {
+    height: 180px;
+  }
+
+  #tabExerciseID .tab.col.s3 {
+    width: 14%;
+  }
 }
 
-.row{
-  margin-bottom: 0;
+@media screen and (min-width:767px) {
+  .testing {
+    position: fixed;
+  }
+}
+@media screen and (min-width:992px) {
+
 }
 
-:root {
-  --main-background-color: white;
-}
 
-.fixed-header {
-  background-color: var(--main-background-color);
-  height: 10vh;
-}
 
-.col.s2.title {
-  font-size: 35px;
-  margin-left: 20px;
-}
 
-.calendar {
-  font-size: 20px;
-  margin-top: 15px;
-}
+
                                     /********** MAIN COMPONENT *********/
-
-
-
-.fit-container {
-  height: 90vh;
-  background-color: #f4f8fc;
-  padding: 20px;
-}
-
-.col.s2.nav {
-  padding: 15px;
-  background-color: var(--main-background-color);
-}
-
-.col.s2.user {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.col.s2.measurements {
-  height: 10vh;
-  border-top: 1px solid #999999;
-  border-bottom: 1px solid #999999;
-}
-
-.col.s2.user,
-.col.s2.links {
-  height: 25vh;
-}
-
-.card {
-  margin: 0;
-}
-
-img.circle {
-  height: 60px;
-  width: 60px;
-}
-
-.user,
-.user-measurements,
-.links,
-.fit-card {
-  width: 20vw;
-}
-
-.user {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 100px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.user-measurements {
-  border-radius: 0;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-}
-
-.user-measurements .card-stacked:nth-child(1) {
-  border-right: 1px solid lightgray;
-}
-
-.links {
-  border-radius: 0;
-}
-
-.fit-card {
-  height: 180px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.congrats {
-  height: 140px;
-  width: 18vw;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.user-height-container {
-  border-right: 1px solid lightgray;
-}
-
-.user-height,
-.user-weight {
-  color: #64b5f6;
-  text-transform: uppercase;
-}
-
-.lb {
-  color: #999999;
-}
-
-.overview,
-.stats,
-.exercises,
-.workout-plan {
-  font-size: 18px;
-  color: #666666;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.overview i,
-.stats i,
-.exercises i,
-.workout-plan i {
-  font-size: 24px;
-  /* color: #666666; */
-  margin-right: 20px;
-}
-
-.icon-color {
-  color: #64b5f6;
-}
-
-.overview,
-.stats,
-.exercises,
-.workout-plan {
-  height: 50px;
-}
