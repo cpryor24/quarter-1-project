@@ -185,6 +185,21 @@
     font-size: 30px;
   }
 
+  #chartdiv {
+    width: 135%;
+    height: 250px;
+    margin-top: -85px;
+    margin-left: -20px;
+  }
+
+  #exerciseChart {
+	  width		: 90%;
+	  height		: 189px;
+	  font-size	: 11px;
+    margin-top: -43px;
+    margin-left: 20px;
+  }
+
 }
 
 @media screen and (min-width:599px) {
@@ -212,15 +227,29 @@
   .exercise-card,
   .sleep-card {
     height: 180px;
+    margin-top: 0;
   }
 
   #tabExerciseID .tab.col.s3 {
     width: 14%;
   }
+
+  #chartdiv {
+    width: 120%;
+    height: 240px;
+    margin-top: -64px;
+    margin-left: 5px;
+  }
+
+  #exerciseChart {
+    width		: 165%;
+	  height		: 220px;
+    margin-left: 40px;
+  }
 }
 
 @media screen and (min-width:767px) {
-  .testing {
+  .user-profile {
     position: fixed;
   }
 }

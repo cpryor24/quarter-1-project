@@ -1,40 +1,88 @@
 'use strict';
 
 let baseURL = 'https://wger.de/api/v2/exercise/?limit=120';
-let abs = [];
-let arms = [];
-let back = [];
-let calves = [];
-let chest = [];
-let legs = [];
-let shoulders = [];
-
-let user = {
-  firstName: 'Mike',
-  lastName: 'Jones',
-  gender: 'Male',
-  age: 20,
-  heightFeet: 6,
-  heightInch: 0
-};
+let exerciseList = JSON.parse(localStorage.getItem('Exercise Array')) || [];
+let count = 0;
 
 document.addEventListener('DOMContentLoaded', function(){
+  let updateExercise = document.querySelector('#exerciseChart')
+
+  var chart = AmCharts.makeChart("chartdiv", {
+      "theme": "light",
+      "type": "gauge",
+      "axes": [{
+        "topTextFontSize": 14,
+        "topTextYOffset": 40,
+        "axisColor": "#f6f9fc",
+        "axisThickness": 1,
+        "endValue": 8,
+        "gridInside": true,
+        "inside": false,
+        "radius": "50%",
+        "valueInterval": 8,
+        "tickColor": "#67b7dc",
+        "startAngle": -90,
+        "endAngle": 90,
+        "unit": "",
+        "bandOutlineAlpha": 0,
+        "bands": [{
+          "color": "#ffffff",
+          "endValue": 100,
+          "innerRadius": "105%",
+          "radius": "170%",
+          /* "gradientRatio": [0.5, 0, -0.5], */
+          "startValue": 0
+        }, {
+          "color": "#ee6e73",
+          "endValue": 0,
+          "innerRadius": "105%",
+          "radius": "170%",
+          /* "gradientRatio": [0.5, 0, -0.5], */
+          "startValue": 0
+        }]
+      }],
+      "arrows": [{
+        "alpha": 1,
+        "innerRadius": "30%",
+        "nailRadius": 0,
+        "radius": "150%"
+      }]
+    });
+
+    setInterval(randomValue, 2000);
+
+  // set random value
+  function randomValue() {
+    let chartAnchor = document.querySelector('#chartdiv a')
+    chartAnchor.textContent = '';
+    var value = Math.round(Math.random() * 10);
+    chart.arrows[0].setValue(value);
+    chart.axes[0].setTopText(value + " hrs");
+    // adjust darker band to new value
+    chart.axes[0].bands[1].setEndValue(value);
+  }
+
+  // Initialize Materialize
+  M.AutoInit();
   let elems = document.querySelectorAll('.collapsible');
   let instances = M.Collapsible.init(elems);
 
+  // Initialize Nav
   let fitnessOverview = document.querySelector('#fitnessOverview');
   let overview = document.querySelector('.overview');
   let stats = document.querySelector('.stats');
   let goal = document.querySelector('.goal')
   let exercises = document.querySelector('.exercises');
   let workout = document.querySelector('.workout-plan');
-  let date = document.querySelector('.date');
-  let tabExercises = document.querySelector('.tab-exercises');
-  let absList = document.querySelector('#absList');
-  let d = new Date();
 
+  // Initialize Date
+  let d = new Date();
+  let date = document.querySelector('.date');
   date.insertAdjacentHTML('beforeend', d.toDateString());
-  M.AutoInit();
+
+  // Initialize LocalStorage State
+  let exerciseNumber = document.querySelector('#exerciseNumber');
+  exerciseNumber.textContent = exerciseList.length;
 
   function onFitnessClick(e){
     if(e.target === overview){
@@ -72,16 +120,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
   fitnessOverview.addEventListener('click', onFitnessClick);
 
-  axios.all([
-    axios.get(baseURL)
-    // ,
-    // axios.get('http://api.openweathermap.org/data/2.5/weather?q=phoenix&APPID=1ea5c5d3585bd190c69d54fd139d6ddd')
-  ])
+  axios.get(baseURL)
   .then(function(result){
-    let response = result[0].data.results;
+    let response = result.data.results;
+    let abs = [];
+    let arms = [];
+    let back = [];
+    let calves = [];
+    let chest = [];
+    let legs = [];
+    let shoulders = [];
 
+    let addExercise = document.querySelectorAll('.exercise-listings');
+    let tabExercises = document.querySelector('.tab-exercises');
+    let absList = document.querySelector('#absList');
+
+// !noDupes.length || noDupes[noDupes.length-1] != arr[i]
     for(let i = 0; i < response.length; i++){
-      // console.log('results cat ', result[0].data.results[0])
       if(response[i].category === 10 && response[i].name !== '' && response[i].language === 2){
           abs.push(response[i])
       } else if(response[i].category === 8 && response[i].name !== '' && response[i].language === 2){
@@ -99,11 +154,14 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
 
+
     function loadAbsList(e){
       for(let i = 0; i < abs.length; i++){
         absList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${abs[i].name}</div>
-          <div class="collapsible-body"><span>${abs[i].description}</span></div>
+          <div class="collapsible-body"><span>${abs[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
@@ -113,7 +171,9 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < arms.length; i++){
         armsList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${arms[i].name}</div>
-          <div class="collapsible-body"><span>${arms[i].description}</span></div>
+          <div class="collapsible-body"><span>${arms[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
@@ -123,8 +183,11 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < back.length; i++){
         backList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${back[i].name}</div>
-          <div class="collapsible-body"><span>${back[i].description}</span></div>
-          </li>`
+          <div class="collapsible-body">
+            <span>${back[i].description}</span>
+            <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
+        </li>`
         )
       }
     }
@@ -133,7 +196,9 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < calves.length; i++){
         calvesList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${calves[i].name}</div>
-          <div class="collapsible-body"><span>${calves[i].description}</span></div>
+          <div class="collapsible-body"><span>${calves[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
@@ -143,7 +208,9 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < chest.length; i++){
         chestList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${chest[i].name}</div>
-          <div class="collapsible-body"><span>${chest[i].description}</span></div>
+          <div class="collapsible-body"><span>${chest[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
@@ -153,7 +220,9 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < legs.length; i++){
         legsList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${legs[i].name}</div>
-          <div class="collapsible-body"><span>${legs[i].description}</span></div>
+          <div class="collapsible-body"><span>${legs[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
@@ -163,10 +232,51 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < shoulders.length; i++){
         shouldersList.insertAdjacentHTML('beforeend', `<li>
           <div class="collapsible-header" >${shoulders[i].name}</div>
-          <div class="collapsible-body"><span>${shoulders[i].description}</span></div>
+          <div class="collapsible-body"><span>${shoulders[i].description}</span>
+          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+          </div>
           </li>`
         )
       }
+    }
+
+    function updateChart(newCount) {
+      var exerciseChart = AmCharts.makeChart( "exerciseChart", {
+        "type": "pie",
+        "theme": "chalk",
+        "dataProvider": [ {
+          "title": "New Exercises",
+          "value": newCount
+        }, {
+          "title": "Old Exercises",
+          "value": exerciseList.length
+        } ],
+        "titleField": "title",
+        "valueField": "value",
+        "labelRadius": 5,
+
+        "radius": "42%",
+        "innerRadius": "60%",
+        "labelText": "[[title]]",
+        "export": {
+          "enabled": true
+        }
+      } );
+    }
+
+    // Initialize for loop on added exercises
+    for(let i = 0; i < addExercise.length; i++){
+      addExercise[i].addEventListener('click', function(e) {
+        e.preventDefault()
+
+        if(e.target.classList.contains('add-exercise')){
+          count++;
+          exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
+          localStorage.setItem('Exercise Array', JSON.stringify(exerciseList));
+          exerciseNumber.textContent = exerciseList.length;
+          updateChart(count)
+        }
+      })
     }
 
     loadAbsList();
@@ -176,6 +286,7 @@ document.addEventListener('DOMContentLoaded', function(){
     loadChestList()
     loadLegsList()
     loadShouldersList()
-  })
+    updateChart(count)
+    })
 
 });
