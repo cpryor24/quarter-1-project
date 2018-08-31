@@ -200,6 +200,23 @@
     margin-left: 20px;
   }
 
+  textarea.materialize-textarea:focus:not([read-only]),
+  input.materialize-input:focus:not([read-only])) {
+    border-bottom: 1px solid #2196F3;
+  }
+
+  .btn,
+  .btn:hover {
+    background-color: #2196F3;
+  }
+
+  [type="radio"]:checked+span:after,
+  [type="radio"].with-gap:checked+span:before,
+  [type="radio"].with-gap:checked+span:after,
+  [type="radio"]:checked+span:after,
+  [type="radio"].with-gap:checked+span:before,
+  [type="radio"].with-gap:checked+span:after {
+    border: 2px solid #2196F3;
 }
 
 @media screen and (min-width:599px) {
@@ -245,6 +262,16 @@
     width		: 165%;
 	  height		: 220px;
     margin-left: 40px;
+  }
+
+  .hh {
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.19;
+    z-index: -1;
   }
 }
 

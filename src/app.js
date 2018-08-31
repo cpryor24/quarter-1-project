@@ -4,6 +4,7 @@ let baseURL = 'https://wger.de/api/v2/exercise/?limit=120';
 let exerciseList = JSON.parse(localStorage.getItem('Exercise Array')) || [];
 let count = 0;
 
+
 document.addEventListener('DOMContentLoaded', function(){
   let updateExercise = document.querySelector('#exerciseChart')
 
@@ -268,7 +269,8 @@ document.addEventListener('DOMContentLoaded', function(){
     for(let i = 0; i < addExercise.length; i++){
       addExercise[i].addEventListener('click', function(e) {
         e.preventDefault()
-
+        console.log(exercisList)
+        console.log(exerciseList.length)
         if(e.target.classList.contains('add-exercise')){
           count++;
           exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
