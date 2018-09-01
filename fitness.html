@@ -33,8 +33,8 @@
                     <img class="circle valign-wrapper center-align" src="images/fitness.jpg" alt="fitness">
                     <!-- <span class=" halign-wrapper right-align">EDIT</span> -->
                   </div>
-                  <h5 class="name valign-wrapper">Mika Jones</h5>
-                  <div class="gender">Female, 32 years old</div>
+                  <h5 class="valign-wrapper"><span class="first-name"></span>&nbsp<span class="last-name"></span> </h5>
+                  <div><span class="gender"></span>,&nbsp<span class="age"></span> years old</div>
                 </div>
               </div>
             </div>
@@ -46,13 +46,13 @@
               <div class="card-stacked">
                 <div class="card-content user-height-container">
                   <div class="user-height">Height</div>
-                  <div>6' 0"</div>
+                  <div><span class="height-feet"></span>'&nbsp <span class="height-inches"></span>"</div>
                 </div>
               </div>
               <div class="card-stacked">
                 <div class="card-content user-weight-container">
                   <div class="user-weight">Weight</div>
-                  <div>185 <span class="lb">lb</span></div>
+                  <div><span class="weight"></span>&nbsp<span class="lb">lb</span></div>
                 </div>
               </div>
             </div>
@@ -65,7 +65,8 @@
                 <div class="card-content" id="fitnessOverview">
                   <div class="overview icon-color valign-wrapper"><i class="material-icons">dashboard</i>Home</div>
                   <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div>
-                  <div class="goal valign-wrapper"><i class="material-icons">flag</i>my goal</div>
+                  <!-- Modal Trigger -->
+                  <div class="goal valign-wrapper modal-trigger" href="#userGoal"><i class="material-icons">flag</i>my goal</div>
                   <div class="exercises valign-wrapper"><i class="material-icons">fitness_center</i>Exercises</div>
                   <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div>
                 </div>
@@ -89,6 +90,17 @@
           </div>
         </article>
       </aside>
+
+      <!-- Modal Structure -->
+      <div id="userGoal" class="modal">
+        <div class="modal-content">
+         <h4>My Goal</h4>
+         <p></p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
 
       <!-- FITNESS CARDS -->
       <section class="col s12 m3"></section>

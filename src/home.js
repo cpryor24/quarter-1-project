@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function(){
   let gender = document.querySelector('#gender');
   let goal = document.querySelector('#goal');
 
-
   userInfo.addEventListener('click', function(){
     localStorage.setItem('First Name', JSON.stringify(firstName.value))
     localStorage.setItem('Last Name', JSON.stringify(lastName.value))
@@ -21,13 +20,6 @@ document.addEventListener('DOMContentLoaded', function(){
     localStorage.setItem('Age', JSON.stringify(age.value))
     localStorage.setItem('Gender', JSON.stringify(gender.value))
     localStorage.setItem('Goal', JSON.stringify(goal.value))
-
-    console.log(firstName.value, lastName.value, heightFtInline.value, heightInchInline.value, weightInline.value, age.value, gender.value , goal.value)
     window.location.href = 'fitness.html';
-
   });
-
-
-
-
 })

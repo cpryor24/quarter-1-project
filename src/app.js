@@ -4,11 +4,8 @@ let baseURL = 'https://wger.de/api/v2/exercise/?limit=120';
 let exerciseList = JSON.parse(localStorage.getItem('Exercise Array')) || [];
 let count = 0;
 
-console.log(exercisList)
-
 document.addEventListener('DOMContentLoaded', function(){
-  let updateExercise = document.querySelector('#exerciseChart')
-
+  let updateExercise = document.querySelector('#exerciseChart');
   var chart = AmCharts.makeChart("chartdiv", {
       "theme": "light",
       "type": "gauge",
@@ -50,8 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
         "radius": "150%"
       }]
     });
-
-    setInterval(randomValue, 2000);
+  setInterval(randomValue, 2000);
 
   // set random value
   function randomValue() {
@@ -68,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function(){
   M.AutoInit();
   let elems = document.querySelectorAll('.collapsible');
   let instances = M.Collapsible.init(elems);
+  let el = document.querySelector('.modal');
+  let userGoalModal = M.Modal.init(el);
 
   // Initialize Nav
   let fitnessOverview = document.querySelector('#fitnessOverview');
@@ -84,7 +82,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Initialize LocalStorage State
   let exerciseNumber = document.querySelector('#exerciseNumber');
-  exerciseNumber.textContent = exerciseList.length;
+  let userFirstName = document.querySelector('.first-name');
+  let userLastName = document.querySelector('.last-name');
+  let userGender = document.querySelector('.gender');
+  let userAge = document.querySelector('.age')
+  let userHeightFt = document.querySelector('.height-feet');
+  let userHeightInches = document.querySelector('.height-inches');
+  let userWeight = document.querySelector('.weight');
+  let userGoals = document.querySelector('#userGoal p');
+
+  function userProfile() {
+    // Initialize number of exercises from exercise array
+    exerciseNumber.textContent = exerciseList.length;
+
+    userFirstName.textContent = JSON.parse(localStorage.getItem('First Name'));
+    userLastName.textContent = JSON.parse(localStorage.getItem('Last Name'));
+    userGender.textContent = JSON.parse(localStorage.getItem('Gender'));
+    userAge.textContent = JSON.parse(localStorage.getItem('Age'));
+    userHeightFt.textContent = JSON.parse(localStorage.getItem('Height Ft'));
+    userHeightInches.textContent = JSON.parse(localStorage.getItem('Height Inch'));
+    userWeight.textContent = JSON.parse(localStorage.getItem('Weight'));
+  }
+
+  function getGoalModal(){
+    userGoals.textContent = JSON.parse(localStorage.getItem('Goal'));
+  }
 
   function onFitnessClick(e){
     if(e.target === overview){
@@ -111,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function(){
       exercises.classList.remove('icon-color');
       overview.classList.remove('icon-color');
       workout.classList.remove('icon-color');
+      getGoalModal();
     } else {
       e.target.classList.add('icon-color');
       stats.classList.remove('icon-color');
@@ -121,10 +144,14 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   fitnessOverview.addEventListener('click', onFitnessClick);
-
   axios.get(baseURL)
   .then(function(result){
     let response = result.data.results;
+    let addExercise = document.querySelectorAll('.exercise-listings');
+    let tabExercises = document.querySelector('.tab-exercises');
+    let absList = document.querySelector('#absList');
+
+    // Initialize Arrays for Body Parts
     let abs = [];
     let arms = [];
     let back = [];
@@ -133,11 +160,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let legs = [];
     let shoulders = [];
 
-    let addExercise = document.querySelectorAll('.exercise-listings');
-    let tabExercises = document.querySelector('.tab-exercises');
-    let absList = document.querySelector('#absList');
-
-// !noDupes.length || noDupes[noDupes.length-1] != arr[i]
+    // Loop through API call to push exercises to arrays
     for(let i = 0; i < response.length; i++){
       if(response[i].category === 10 && response[i].name !== '' && response[i].language === 2){
           abs.push(response[i])
@@ -156,6 +179,19 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
 
+    // Initialize for loop on added exercises
+    for(let i = 0; i < addExercise.length; i++){
+      addExercise[i].addEventListener('click', function(e) {
+        e.preventDefault()
+        if(e.target.classList.contains('add-exercise')){
+          count++;
+          exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
+          localStorage.setItem('Exercise Array', JSON.stringify(exerciseList));
+          exerciseNumber.textContent = exerciseList.length;
+          updateChart(count)
+        }
+      })
+    }
 
     function loadAbsList(e){
       for(let i = 0; i < abs.length; i++){
@@ -266,22 +302,8 @@ document.addEventListener('DOMContentLoaded', function(){
       } );
     }
 
-    // Initialize for loop on added exercises
-    for(let i = 0; i < addExercise.length; i++){
-      addExercise[i].addEventListener('click', function(e) {
-        e.preventDefault()
-        console.log(exercisList)
-        console.log(exerciseList.length)
-        if(e.target.classList.contains('add-exercise')){
-          count++;
-          exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
-          localStorage.setItem('Exercise Array', JSON.stringify(exerciseList));
-          exerciseNumber.textContent = exerciseList.length;
-          updateChart(count)
-        }
-      })
-    }
-
+    userProfile()
+    updateChart(count)
     loadAbsList();
     loadArmsList()
     loadBackList()
@@ -289,7 +311,5 @@ document.addEventListener('DOMContentLoaded', function(){
     loadChestList()
     loadLegsList()
     loadShouldersList()
-    updateChart(count)
     })
-
 });
