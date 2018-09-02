@@ -30,13 +30,13 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   clear.addEventListener('click', function(){
-    firstName.value = '';
-    lastName.value = '';
-    heightFt.value = '';
-    heightInch.value = '';
-    weight.value = '';
-    age.value = '';
-    gender.value = '';
-    goal.value = '';
+    firstName.value = undefined;
+    lastName.value = undefined;
+    heightFt.value = undefined;
+    heightInch.value = undefined;
+    weight.value = undefined;
+    age.value = undefined;
+    gender.value = undefined;
+    goal.value = undefined;
   })
 })
