@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function(){
         "innerRadius": "60%",
         "labelText": "[[title]]",
         "export": {
-          "enabled": true
+          "enabled": false
         }
       } );
     }
