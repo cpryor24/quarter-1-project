@@ -38,6 +38,5 @@ document.addEventListener('DOMContentLoaded', function(){
     age.value = null;
     gender.value = null;
     goal.value = null;
-    console.log(' 2firstName ', firstName.value)
   })
 })

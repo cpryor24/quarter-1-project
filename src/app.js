@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let overview = document.querySelector('.overview');
   let stats = document.querySelector('.stats');
   let goal = document.querySelector('.goal')
-  let exercises = document.querySelector('.exercises');
+  // let exercises = document.querySelector('.exercises');
   let workout = document.querySelector('.workout-plan');
 
   // Initialize Date
@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let tabExercises = document.querySelector('.tab-exercises');
     let absList = document.querySelector('#absList');
 
+
     // Initialize Arrays for Body Parts
     let abs = [];
     let arms = [];
@@ -159,6 +160,8 @@ document.addEventListener('DOMContentLoaded', function(){
     let chest = [];
     let legs = [];
     let shoulders = [];
+
+    let newObj = {};
 
     // Loop through API call to push exercises to arrays
     for(let i = 0; i < response.length; i++){
@@ -191,6 +194,60 @@ document.addEventListener('DOMContentLoaded', function(){
           updateChart(count)
         }
       })
+    }
+
+    // Single for loop on exercises list
+    let exercises = {
+      abs: [
+        document.querySelector('#absList'),
+        []
+      ],
+      arms: document.querySelector('#armsList'),
+      back: document.querySelector('#backList'),
+      calves: document.querySelector('#calvesList'),
+      chest: document.querySelector('#chestList'),
+      legs: document.querySelector('#legsList'),
+      shoulders: document.querySelector('#shouldersList')
+    }
+    let tabExerciseID = document.querySelectorAll("#tabExerciseID a");
+
+    for(let key in exercises){
+      for(let i = 0; i < tabExerciseID.length; i++){
+        // console.log('1', tabExerciseID[i].id );
+        for(let j = 0; j < response.length; j++){
+          // console.log(response[j])
+          // console.log(key)
+          // console.log(response[i].category)
+          // console.log(parseInt(tabExerciseID[i].id))
+          if(response[i].category === parseInt(tabExerciseID[i].id) ){
+              exercises[key[1]] = response[i]
+              // newObj = [response[i]]
+
+              // console.log(exercises[key[1]])
+              console.log(exercises[key][1])
+
+          }
+        }
+      }
+      // for(let i = 0; i < response.length; i++){
+
+//
+
+        //&& response[i].name !== '' && response[i].language === 2
+
+
+        // console.log(tabExerciseID[i].textContent.toLowerCase() );
+
+        // if(key === )
+        // console.log(exercises)
+        // exercises[key].insertAdjacentHTML('beforeend', `<li>
+        //   <div class="collapsible-header">${response[i].name}</div>
+        //   <div class="collapsible-body"><span>${response[i].description}</span>
+        //   <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+        //   </div>
+        //   </li>`
+        // );
+      // }
     }
 
     function loadAbsList(e){
@@ -304,12 +361,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
     userProfile()
     updateChart(count)
-    loadAbsList();
-    loadArmsList()
-    loadBackList()
-    loadCalvesList()
-    loadChestList()
-    loadLegsList()
-    loadShouldersList()
+    // loadAbsList();
+    // loadArmsList()
+    // loadBackList()
+    // loadCalvesList()
+    // loadChestList()
+    // loadLegsList()
+    // loadShouldersList()
     })
 });
