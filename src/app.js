@@ -145,228 +145,97 @@ document.addEventListener('DOMContentLoaded', function(){
 
   fitnessOverview.addEventListener('click', onFitnessClick);
   axios.get(baseURL)
-  .then(function(result){
-    let response = result.data.results;
-    let addExercise = document.querySelectorAll('.exercise-listings');
-    let tabExercises = document.querySelector('.tab-exercises');
-    let absList = document.querySelector('#absList');
+    .then(function(result){
+      let response = result.data.results;
+      let addExercise = document.querySelectorAll('.exercise-listings');
+      let tabExercises = document.querySelector('.tab-exercises');
 
-
-    // Initialize Arrays for Body Parts
-    let abs = [];
-    let arms = [];
-    let back = [];
-    let calves = [];
-    let chest = [];
-    let legs = [];
-    let shoulders = [];
-
-    let newObj = {};
-
-    // Loop through API call to push exercises to arrays
-    for(let i = 0; i < response.length; i++){
-      if(response[i].category === 10 && response[i].name !== '' && response[i].language === 2){
-          abs.push(response[i])
-      } else if(response[i].category === 8 && response[i].name !== '' && response[i].language === 2){
-          arms.push(response[i])
-      } else if (response[i].category === 12 && response[i].name !== '' && response[i].language === 2){
-          back.push(response[i])
-      } else if (response[i].category === 14 && response[i].name !== '' && response[i].language === 2){
-          calves.push(response[i])
-      } else if (response[i].category === 11 && response[i].name !== '' && response[i].language === 2){
-          chest.push(response[i])
-      } else if (response[i].category === 9 && response[i].name !== '' && response[i].language === 2){
-          legs.push(response[i])
-      } else if (response[i].category === 13 && response[i].name !== '' && response[i].language === 2){
-          shoulders.push(response[i])
+      // Initialize for loop on added exercises
+      for(let i = 0; i < addExercise.length; i++){
+        addExercise[i].addEventListener('click', function(e) {
+          e.preventDefault()
+          if(e.target.classList.contains('add-exercise')){
+            count++;
+            exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
+            localStorage.setItem('Exercise Array', JSON.stringify(exerciseList));
+            exerciseNumber.textContent = exerciseList.length;
+            updateChart(count)
+          }
+        })
       }
-    }
 
-    // Initialize for loop on added exercises
-    for(let i = 0; i < addExercise.length; i++){
-      addExercise[i].addEventListener('click', function(e) {
-        e.preventDefault()
-        if(e.target.classList.contains('add-exercise')){
-          count++;
-          exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)
-          localStorage.setItem('Exercise Array', JSON.stringify(exerciseList));
-          exerciseNumber.textContent = exerciseList.length;
-          updateChart(count)
+      // Single for loop on exercises list
+      let exercises = {
+        abs: {
+          list: document.querySelector('#absList'),
+          id: 10
+        },
+        arms: {
+          list: document.querySelector('#armsList'),
+          id: 8
+        },
+        back: {
+          list: document.querySelector('#backList'),
+          id: 12
+        },
+        calves: {
+          list: document.querySelector('#calvesList'),
+          id: 14
+        },
+        chest: {
+          list: document.querySelector('#chestList'),
+          id: 11
+        },
+        legs: {
+          list: document.querySelector('#legsList'),
+          id: 9
+        },
+        shoulders: {
+          list: document.querySelector('#shouldersList'),
+          id: 13
         }
-      })
-    }
+      }
 
-    // Single for loop on exercises list
-    let exercises = {
-      abs: [
-        document.querySelector('#absList'),
-        []
-      ],
-      arms: document.querySelector('#armsList'),
-      back: document.querySelector('#backList'),
-      calves: document.querySelector('#calvesList'),
-      chest: document.querySelector('#chestList'),
-      legs: document.querySelector('#legsList'),
-      shoulders: document.querySelector('#shouldersList')
-    }
-    let tabExerciseID = document.querySelectorAll("#tabExerciseID a");
-
-    for(let key in exercises){
-      for(let i = 0; i < tabExerciseID.length; i++){
-        // console.log('1', tabExerciseID[i].id );
+      for(let key in exercises){
+        let myList = exercises[key].list;
         for(let j = 0; j < response.length; j++){
-          // console.log(response[j])
-          // console.log(key)
-          // console.log(response[i].category)
-          // console.log(parseInt(tabExerciseID[i].id))
-          if(response[i].category === parseInt(tabExerciseID[i].id) ){
-              exercises[key[1]] = response[i]
-              // newObj = [response[i]]
-
-              // console.log(exercises[key[1]])
-              console.log(exercises[key][1])
-
+          if(exercises[key].id === response[j].category && response[j].name !== '' && response[j].language === 2){
+            myList.insertAdjacentHTML('beforeend', `<li>
+              <div class="collapsible-header">${response[j].name}</div>
+              <div class="collapsible-body"><span>${response[j].description}</span>
+              <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
+              </div>
+              </li>`
+            );
           }
         }
       }
-      // for(let i = 0; i < response.length; i++){
 
-//
+      function updateChart(newCount) {
+        var exerciseChart = AmCharts.makeChart( "exerciseChart", {
+          "type": "pie",
+          "theme": "chalk",
+          "dataProvider": [ {
+            "title": "New Exercises",
+            "value": newCount
+          }, {
+            "title": "Old Exercises",
+            "value": exerciseList.length
+          } ],
+          "titleField": "title",
+          "valueField": "value",
+          "labelRadius": 5,
 
-        //&& response[i].name !== '' && response[i].language === 2
-
-
-        // console.log(tabExerciseID[i].textContent.toLowerCase() );
-
-        // if(key === )
-        // console.log(exercises)
-        // exercises[key].insertAdjacentHTML('beforeend', `<li>
-        //   <div class="collapsible-header">${response[i].name}</div>
-        //   <div class="collapsible-body"><span>${response[i].description}</span>
-        //   <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-        //   </div>
-        //   </li>`
-        // );
-      // }
-    }
-
-    function loadAbsList(e){
-      for(let i = 0; i < abs.length; i++){
-        absList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${abs[i].name}</div>
-          <div class="collapsible-body"><span>${abs[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
+          "radius": "42%",
+          "innerRadius": "60%",
+          "labelText": "[[title]]",
+          "export": {
+            "enabled": false
+          }
+        } );
       }
-    }
 
-    function loadArmsList(){
-      for(let i = 0; i < arms.length; i++){
-        armsList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${arms[i].name}</div>
-          <div class="collapsible-body"><span>${arms[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
-      }
-    }
-
-    function loadBackList(){
-      for(let i = 0; i < back.length; i++){
-        backList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${back[i].name}</div>
-          <div class="collapsible-body">
-            <span>${back[i].description}</span>
-            <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-        </li>`
-        )
-      }
-    }
-
-    function loadCalvesList(){
-      for(let i = 0; i < calves.length; i++){
-        calvesList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${calves[i].name}</div>
-          <div class="collapsible-body"><span>${calves[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
-      }
-    }
-
-    function loadChestList(){
-      for(let i = 0; i < chest.length; i++){
-        chestList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${chest[i].name}</div>
-          <div class="collapsible-body"><span>${chest[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
-      }
-    }
-
-    function loadLegsList(){
-      for(let i = 0; i < legs.length; i++){
-        legsList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${legs[i].name}</div>
-          <div class="collapsible-body"><span>${legs[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
-      }
-    }
-
-    function loadShouldersList(){
-      for(let i = 0; i < shoulders.length; i++){
-        shouldersList.insertAdjacentHTML('beforeend', `<li>
-          <div class="collapsible-header" >${shoulders[i].name}</div>
-          <div class="collapsible-body"><span>${shoulders[i].description}</span>
-          <button class="btn waves-effect waves-light add-exercise blue lighten-2 valign-wrapper" name="action">Add Exercise</button>
-          </div>
-          </li>`
-        )
-      }
-    }
-
-    function updateChart(newCount) {
-      var exerciseChart = AmCharts.makeChart( "exerciseChart", {
-        "type": "pie",
-        "theme": "chalk",
-        "dataProvider": [ {
-          "title": "New Exercises",
-          "value": newCount
-        }, {
-          "title": "Old Exercises",
-          "value": exerciseList.length
-        } ],
-        "titleField": "title",
-        "valueField": "value",
-        "labelRadius": 5,
-
-        "radius": "42%",
-        "innerRadius": "60%",
-        "labelText": "[[title]]",
-        "export": {
-          "enabled": false
-        }
-      } );
-    }
-
-    userProfile()
-    updateChart(count)
-    // loadAbsList();
-    // loadArmsList()
-    // loadBackList()
-    // loadCalvesList()
-    // loadChestList()
-    // loadLegsList()
-    // loadShouldersList()
+      userProfile()
+      updateChart(count)
     })
 });
