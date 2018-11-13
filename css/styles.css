@@ -7,10 +7,6 @@
     background-color: #f4f8fc;
   }
 
-  .row .col {
-    padding: 0;
-  }
-
   .row{
     margin-bottom: 0;
   }
@@ -36,6 +32,10 @@
 
   .calendar {
     font-size: 18px;
+  }
+
+  .show {
+    display: none;
   }
 
   .fit-container .col .row {
@@ -77,10 +77,10 @@
   }
 
   .user {
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .user-measurements {
@@ -116,7 +116,7 @@
   .stats,
   .exercises,
   .workout-plan {
-    font-size: 18px;
+    /* font-size: 18px; */
     color: #666666;
     cursor: pointer;
     text-transform: uppercase;
@@ -127,7 +127,7 @@
   .stats i,
   .exercises i,
   .workout-plan i {
-    font-size: 24px;
+    /* font-size: 24px; */
     margin-right: 20px;
   }
 
@@ -141,6 +141,17 @@
   .exercises,
   .workout-plan {
     height: 43px;
+  }
+
+  .card .card-content {
+    padding: 10px;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .card-panel {
+    padding: 0px;
+    border-radius: 2px;
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.14), 0 0px 0px 0px rgba(0,0,0,0.12), 0 0px 0px 0 rgba(0,0,0,0.2);
   }
 
   .fit-card {
@@ -182,7 +193,7 @@
 
   .card-workout,
   .card-sleep {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   #chartdiv {
@@ -198,6 +209,10 @@
 	  font-size	: 11px;
     margin-top: -43px;
     margin-left: 20px;
+  }
+
+  .collapsible.popout>li {
+    margin: 0 10px;
   }
 
   textarea.materialize-textarea:focus:not([read-only]),
@@ -217,12 +232,21 @@
   [type="radio"].with-gap:checked+span:before,
   [type="radio"].with-gap:checked+span:after {
     border: 2px solid #2196F3;
+  }
 }
 
 @media screen and (min-width:599px) {
 
+  .row .col {
+    padding: 0;
+  }
+
+  .show {
+    display: block;
+  }
+
   .col.m6.title {
-    font-size: 35px;
+    font-size: 34px;
     padding-left: 20px;
   }
 
@@ -259,9 +283,9 @@
   }
 
   #exerciseChart {
-    width		: 165%;
-	  height		: 220px;
-    margin-left: 40px;
+    width: 165%;
+	  height: 220px;
+    margin-left: 20px;
   }
 
   .hh {
@@ -276,16 +300,13 @@
 }
 
 @media screen and (min-width:767px) {
-  .user-profile {
-    position: fixed;
+  #exerciseChart {
+    width: 145%;
+    margin-left: 40px;
+  }
+
+  #chartdiv {
+    height: 230px;
+    margin-top: -54px;
   }
 }
-@media screen and (min-width:992px) {
-
-}
-
-
-
-
-
-                                    /********** MAIN COMPONENT *********/

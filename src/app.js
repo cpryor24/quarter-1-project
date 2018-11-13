@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function(){
   function randomValue() {
     let chartAnchor = document.querySelector('#chartdiv a')
     chartAnchor.textContent = '';
-    var value = Math.round(Math.random() * 10);
+    let value = Math.round(Math.random() * 10);
     chart.arrows[0].setValue(value);
     chart.axes[0].setTopText(value + " hrs");
     // adjust darker band to new value
@@ -72,13 +72,12 @@ document.addEventListener('DOMContentLoaded', function(){
   let overview = document.querySelector('.overview');
   let stats = document.querySelector('.stats');
   let goal = document.querySelector('.goal')
-  // let exercises = document.querySelector('.exercises');
   let workout = document.querySelector('.workout-plan');
 
   // Initialize Date
-  let d = new Date();
+  let newDate = new Date();
   let date = document.querySelector('.date');
-  date.insertAdjacentHTML('beforeend', d.toDateString());
+  date.insertAdjacentHTML('beforeend', newDate.toDateString());
 
   // Initialize LocalStorage State
   let exerciseNumber = document.querySelector('#exerciseNumber');
@@ -91,10 +90,11 @@ document.addEventListener('DOMContentLoaded', function(){
   let userWeight = document.querySelector('.weight');
   let userGoals = document.querySelector('#userGoal p');
 
-  function userProfile() {
+  let userProfile = () => {
     // Initialize number of exercises from exercise array
     exerciseNumber.textContent = exerciseList.length;
 
+    // Retrieve data from localStorage
     userFirstName.textContent = JSON.parse(localStorage.getItem('First Name'));
     userLastName.textContent = JSON.parse(localStorage.getItem('Last Name'));
     userGender.textContent = JSON.parse(localStorage.getItem('Gender'));
@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function(){
     userWeight.textContent = JSON.parse(localStorage.getItem('Weight'));
   }
 
-  function getGoalModal(){
+  let getGoalModal = () => {
     userGoals.textContent = JSON.parse(localStorage.getItem('Goal'));
   }
 
-  function onFitnessClick(e){
+  let onFitnessClick = (e) => {
     if(e.target === overview){
       e.target.classList.add('icon-color');
       stats.classList.remove('icon-color');
@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   fitnessOverview.addEventListener('click', onFitnessClick);
+
   axios.get(baseURL)
     .then(function(result){
       let response = result.data.results;
@@ -211,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function(){
         }
       }
 
-      function updateChart(newCount) {
-        var exerciseChart = AmCharts.makeChart( "exerciseChart", {
+      let updateChart = (newCount) => {
+        let exerciseChart = AmCharts.makeChart( "exerciseChart", {
           "type": "pie",
           "theme": "chalk",
           "dataProvider": [ {
