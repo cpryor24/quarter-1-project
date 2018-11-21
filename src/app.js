@@ -66,13 +66,14 @@ document.addEventListener('DOMContentLoaded', function(){
   let instances = M.Collapsible.init(elems);
   let el = document.querySelector('.modal');
   let userGoalModal = M.Modal.init(el);
+  let userExercises = M.Modal.init(el);
+
 
   // Initialize Nav
   let fitnessOverview = document.querySelector('#fitnessOverview');
   let overview = document.querySelector('.overview');
-  let stats = document.querySelector('.stats');
-  let goal = document.querySelector('.goal')
-  let workout = document.querySelector('.workout-plan');
+  let goal = document.querySelector('.goal');
+  let exercises = document.querySelector('.exercises')
 
   // Initialize Date
   let newDate = new Date();
@@ -89,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let userHeightInches = document.querySelector('.height-inches');
   let userWeight = document.querySelector('.weight');
   let userGoals = document.querySelector('#userGoal p');
+  let exercisesList = document.querySelector('#userExercises ul');
 
   let userProfile = () => {
     // Initialize number of exercises from exercise array
@@ -104,6 +106,17 @@ document.addEventListener('DOMContentLoaded', function(){
     userWeight.textContent = JSON.parse(localStorage.getItem('Weight'));
   }
 
+  let getExerciseModal = () => {
+    exercisesList.textContent = '';
+    let exerciseArray = JSON.parse(localStorage.getItem('Exercise Array'));
+    for (let i = 0; i < exerciseArray.length; i++) {
+      exerciseArray.sort()
+      if(exerciseArray[i + 1] !== exerciseArray[i]){
+        exercisesList.insertAdjacentHTML('beforeend', `<li>${exerciseArray[i]}</li>`)
+      }
+    }
+  }
+
   let getGoalModal = () => {
     userGoals.textContent = JSON.parse(localStorage.getItem('Goal'));
   }
@@ -111,35 +124,18 @@ document.addEventListener('DOMContentLoaded', function(){
   let onFitnessClick = (e) => {
     if(e.target === overview){
       e.target.classList.add('icon-color');
-      stats.classList.remove('icon-color');
       goal.classList.remove('icon-color');
       exercises.classList.remove('icon-color');
-      workout.classList.remove('icon-color');
-    } else if(e.target === stats){
-      e.target.classList.add('icon-color');
-      overview.classList.remove('icon-color');
-      goal.classList.remove('icon-color');
-      exercises.classList.remove('icon-color');
-      workout.classList.remove('icon-color');
     } else if(e.target === exercises){
       e.target.classList.add('icon-color');
-      stats.classList.remove('icon-color');
       goal.classList.remove('icon-color');
       overview.classList.remove('icon-color');
-      workout.classList.remove('icon-color');
-    } else if(e.target === goal){
-      e.target.classList.add('icon-color');
-      stats.classList.remove('icon-color');
-      exercises.classList.remove('icon-color');
-      overview.classList.remove('icon-color');
-      workout.classList.remove('icon-color');
-      getGoalModal();
+      getExerciseModal();
     } else {
       e.target.classList.add('icon-color');
-      stats.classList.remove('icon-color');
-      goal.classList.remove('icon-color');
       exercises.classList.remove('icon-color');
       overview.classList.remove('icon-color');
+      getGoalModal();
     }
   }
 
@@ -155,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function(){
       for(let i = 0; i < addExercise.length; i++){
         addExercise[i].addEventListener('click', function(e) {
           e.preventDefault()
+          e.target.classList.add('disabled')
           if(e.target.classList.contains('add-exercise')){
             count++;
             exerciseList.push(e.target.parentElement.parentElement.childNodes[1].textContent)

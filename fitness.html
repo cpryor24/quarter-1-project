@@ -64,11 +64,11 @@
               <div class="card-stacked">
                 <div class="card-content" id="fitnessOverview">
                   <div class="overview icon-color valign-wrapper"><i class="material-icons">home</i>Home</div>
-                  <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div>
+                  <!-- <div class="stats valign-wrapper"><i class="material-icons">timeline</i>Stats</div> -->
                   <!-- Modal Trigger -->
                   <div class="goal valign-wrapper modal-trigger" href="#userGoal"><i class="material-icons">flag</i>my goal</div>
-                  <div class="exercises valign-wrapper"><i class="material-icons">fitness_center</i>Exercises</div>
-                  <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div>
+                  <div class="exercises valign-wrapper modal-trigger" href="#userExercises"><i class="material-icons">fitness_center</i>Exercises</div>
+                  <!-- <div class="workout-plan valign-wrapper"><i class="material-icons">today</i>Workout Plan</div> -->
                 </div>
               </div>
             </div>
@@ -96,6 +96,16 @@
         <div class="modal-content">
          <h4>My Goal</h4>
          <p></p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+
+      <div id="userExercises" class="modal">
+        <div class="modal-content">
+         <h4>My Exercises</h4>
+         <ul></ul>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
