@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
     for (let i = 0; i < exerciseArray.length; i++) {
       exerciseArray.sort()
       if(exerciseArray[i + 1] !== exerciseArray[i]){
-        exercisesList.insertAdjacentHTML('beforeend', `<li>${exerciseArray[i]}</li>`)
+        exercisesList.insertAdjacentHTML('beforeend', `<li>${exerciseArray[i]}</li> `)
       }
     }
   }
