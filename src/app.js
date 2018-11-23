@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function(){
   let userGoalModal = M.Modal.init(el);
   let userExercises = M.Modal.init(el);
 
-
   // Initialize Nav
   let fitnessOverview = document.querySelector('#fitnessOverview');
   let overview = document.querySelector('.overview');
@@ -91,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let userWeight = document.querySelector('.weight');
   let userGoals = document.querySelector('#userGoal p');
   let exercisesList = document.querySelector('#userExercises ul');
+  let clearExerciseList = document.querySelector('#clear');
 
   let userProfile = () => {
     // Initialize number of exercises from exercise array
@@ -121,6 +121,12 @@ document.addEventListener('DOMContentLoaded', function(){
     userGoals.textContent = JSON.parse(localStorage.getItem('Goal'));
   }
 
+  let clearHandler = () => {
+    localStorage.removeItem('Exercise Array');
+    exerciseList = [];
+    exerciseNumber.textContent = exerciseList.length;
+  }
+
   let onFitnessClick = (e) => {
     if(e.target === overview){
       e.target.classList.add('icon-color');
@@ -139,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
+  clearExerciseList.addEventListener('click', clearHandler);
   fitnessOverview.addEventListener('click', onFitnessClick);
 
   axios.get(baseURL)
